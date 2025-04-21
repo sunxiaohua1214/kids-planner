@@ -1,0 +1,310 @@
+/* 基础重置和全局设置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 使用儿童友好的字体，提供备选通用字体 */
+    font-family: 'LXGW WenKai Screen', 'ZCOOL KuaiLe', sans-serif;
+    min-height: 100vh; /* 最小高度为视口高度 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: flex-start; /* 垂直顶部对齐，允许内容多时滚动 */
+    padding: 30px 15px; /* 给容器一些内边距 */
+    /* 背景图片 - 用户可以替换这里的 URL */
+    background-image: url('https://images.unsplash.com/photo-1531685250784-7569952593d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'); /* 示例：一个柔和的抽象背景图 */
+    background-size: cover; /* 背景覆盖整个区域 */
+    background-position: center; /* 背景居中显示 */
+    background-attachment: fixed; /* 固定背景，页面滚动时背景不动 */
+}
+
+/* 主要内容容器 - 毛玻璃效果 */
+.container {
+    width: 100%;
+    max-width: 800px; /* 限制内容最大宽度 */
+    padding: 30px;
+    border-radius: 20px; /* 圆角 */
+    /* 毛玻璃效果的关键属性 */
+    background-color: rgba(255, 255, 255, 0.6); /* 半透明白色背景 */
+    backdrop-filter: blur(10px); /* 应用背景模糊效果 */
+    -webkit-backdrop-filter: blur(10px); /* Safari 浏览器兼容 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 可选的细边框，增加质感 */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* 添加柔和阴影 */
+}
+
+h1, h2 {
+    text-align: center; /* 标题居中 */
+    color: #333; /* 标题颜色 */
+    margin-bottom: 20px; /* 标题下方间距 */
+}
+
+h1 {
+    font-size: 2.5em; /* 主标题字号 */
+    color: #4a4a4a;
+}
+
+h2 {
+    font-size: 1.8em; /* 副标题字号 */
+    color: #5a5a5a;
+    margin-top: 30px; /* 每个区域标题上方增加间距 */
+}
+
+/* 输入区域、计时器区域、困难点区域、历史记录区域的通用样式 */
+.input-area, .timer-area, .difficulty-area, .history-area {
+    margin-bottom: 30px; /* 各区域下方间距 */
+    text-align: center; /* 让内部行内元素或inline-block元素居中 */
+}
+
+/* 输入框和文本区域样式 */
+.input-area input[type="text"],
+.input-area input[type="number"],
+textarea {
+    padding: 12px 15px; /* 内边距 */
+    border: 1px solid #ccc; /* 边框 */
+    border-radius: 10px; /* 圆角 */
+    margin-right: 10px; /* 右边距 */
+    margin-bottom: 10px; /* 下边距（用于小屏幕换行） */
+    font-size: 1em; /* 字号 */
+    font-family: inherit; /* 继承body字体 */
+    width: calc(60% - 20px); /* 适应性宽度 */
+    min-width: 150px; /* 最小宽度 */
+}
+.input-area input[type="number"] {
+    width: 100px; /* 时间输入框可以窄一些 */
+}
+textarea {
+    width: 90%; /* 文本区域宽度较大 */
+    min-height: 80px; /* 最小高度 */
+    resize: vertical; /* 允许用户垂直调整大小 */
+    display: block; /* 使其独占一行 */
+    margin: 0 auto 10px auto; /* 水平居中并添加底部间距 */
+}
+
+/* 按钮通用样式 */
+button {
+    padding: 12px 20px; /* 内边距 */
+    border: none; /* 无边框 */
+    border-radius: 10px; /* 圆角 */
+    background-image: linear-gradient(to right, #6dd5ed, #2193b0); /* 活泼的渐变蓝色背景 */
+    color: white; /* 文字颜色 */
+    font-size: 1em; /* 字号 */
+    font-family: inherit; /* 继承字体 */
+    cursor: pointer; /* 鼠标悬停为手形 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* 过渡效果 */
+    margin: 5px; /* 给按钮之间一些间距 */
+}
+
+button:hover {
+    transform: translateY(-2px); /* 鼠标悬停时轻微上移 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+}
+button:active {
+    transform: translateY(0); /* 点击时恢复原位 */
+    box-shadow: none; /* 移除阴影 */
+}
+
+/* 计时器显示样式 */
+#timerDisplay {
+    font-size: 2.5em; /* 字号较大 */
+    color: #2a8a9e; /* 颜色 */
+    margin-bottom: 15px; /* 下方间距 */
+    font-weight: bold; /* 加粗 */
+}
+
+/* 任务列表区域布局 */
+.lists-area {
+    display: flex; /* 使用 flex 布局 */
+    justify-content: space-between; /* 两端对齐 */
+    gap: 30px; /* 列表之间的间距 */
+    flex-wrap: wrap; /* 在小屏幕上允许列表换行 */
+}
+
+.list-container {
+    flex: 1; /* 列表容器弹性增长，平分空间 */
+    min-width: 280px; /* 保证每个列表容器的最小宽度 */
+}
+
+/* 任务列表 (ul) 样式 */
+.task-list {
+    list-style: none; /* 去掉默认的项目符号 */
+    padding: 0; /* 去掉默认内边距 */
+}
+
+/* 任务项 (li) 样式 */
+.task-list li {
+    background-color: rgba(255, 255, 255, 0.7); /* 半透明背景 */
+    padding: 15px; /* 内边距 */
+    margin-bottom: 10px; /* 下方间距 */
+    border-radius: 8px; /* 圆角 */
+    display: flex; /* 使用 flex 布局排列内部元素 */
+    align-items: center; /* 垂直居中对齐 */
+    justify-content: space-between; /* 两端对齐 */
+    transition: background-color 0.3s ease; /* 背景色过渡效果 */
+}
+
+/* 已完成任务项的样式 */
+.task-list li.completed {
+    background-color: rgba(211, 255, 211, 0.7); /* 淡绿色背景 */
+    opacity: 0.7; /* 轻微透明 */
+}
+
+.task-list li.completed .task-text {
+    text-decoration: line-through; /* 文字添加删除线 */
+    color: #777; /* 文字颜色变灰 */
+}
+
+/* 复选框样式 */
+.task-list input[type="checkbox"] {
+    margin-right: 15px; /* 右边距 */
+    cursor: pointer; /* 鼠标手形 */
+    width: 20px; /* 宽度 */
+    height: 20px; /* 高度 */
+}
+
+/* 任务文本样式 */
+.task-list .task-text {
+    flex-grow: 1; /* 占据剩余空间 */
+    margin-right: 10px; /* 与删除按钮的间距 */
+    word-break: break-word; /* 长单词或URL自动换行 */
+}
+/* 任务时间样式 */
+.task-list .task-time {
+    font-size: 0.8em; /* 字号稍小 */
+    color: #666; /* 颜色稍浅 */
+    margin-left: 5px; /* 左边距 */
+    white-space: nowrap; /* 防止时间文本换行 */
+}
+
+/* 删除按钮样式 */
+.task-list .delete-btn {
+    background: none; /* 无背景 */
+    border: none; /* 无边框 */
+    color: #ff6b6b; /* 红色，表示删除 */
+    font-size: 1.2em; /* 图标稍大 */
+    cursor: pointer; /* 鼠标手形 */
+    padding: 5px; /* 轻微内边距增加点击区域 */
+}
+
+/* 历史记录区域样式 */
+#historyLog {
+    background-color: rgba(240, 248, 255, 0.7); /* 淡蓝色背景 (AliceBlue) */
+    border-radius: 10px; /* 圆角 */
+    padding: 15px; /* 内边距 */
+    margin-top: 15px; /* 距离上方按钮的间距 */
+    max-height: 300px; /* 限制最大高度 */
+    overflow-y: auto; /* 内容超出时显示垂直滚动条 */
+    text-align: left; /* 内部文本左对齐 */
+}
+
+/* 历史记录条目样式 */
+#historyLog .history-entry {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* 条目间的分隔线 */
+    padding-bottom: 10px; /* 分隔线与下方内容的间距 */
+    margin-bottom: 10px; /* 条目之间的间距 */
+}
+#historyLog .history-entry:last-child {
+    border-bottom: none; /* 最后一条记录下方无分隔线 */
+    margin-bottom: 0; /* 最后一条记录下方无间距 */
+}
+#historyLog h3 { /* 日期标题 */
+    font-size: 1.1em;
+    color: #2a8a9e; /* 使用主题色 */
+    margin-bottom: 5px;
+}
+#historyLog p { /* 任务和困难点文本 */
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 3px;
+    line-height: 1.4; /* 行高 */
+}
+#historyLog strong { /* "困难点："等标签加粗 */
+    color: #333;
+}
+
+/* **** 新增：历史记录搜索框样式 **** */
+#historySearchInput {
+    display: block; /* 独占一行 */
+    width: 80%;     /* 宽度 */
+    max-width: 400px; /* 最大宽度 */
+    padding: 10px 15px; /* 内边距 */
+    margin: 10px auto 15px auto; /* 上下外边距，左右自动居中 */
+    border: 1px solid #ccc; /* 边框 */
+    border-radius: 8px;  /* 圆角 */
+    font-size: 0.95em; /* 字号 */
+    font-family: inherit; /* 继承字体 */
+}
+
+/* 微调一下按钮，让它和搜索框间距合适 */
+.history-area button {
+    margin-bottom: 15px; /* 给按钮下方也加点间距 */
+}
+
+/* 浮动消息提示样式 */
+.feedback-message {
+    position: fixed; /* 固定定位，不随页面滚动 */
+    bottom: 20px; /* 距离底部20px */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 精确水平居中 */
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+    color: white; /* 白色文字 */
+    padding: 10px 20px; /* 内边距 */
+    border-radius: 20px; /* 圆角 */
+    font-size: 0.9em; /* 字号 */
+    opacity: 0; /* 初始透明 */
+    transition: opacity 0.5s ease-in-out; /* 透明度过渡效果 */
+    z-index: 1000; /* 确保在顶层显示 */
+    pointer-events: none; /* 不阻挡下方元素的鼠标事件 */
+}
+
+.feedback-message.show {
+    opacity: 1; /* 显示时变为不透明 */
+}
+
+/* 响应式设计：针对小屏幕设备的调整 */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px; /* 减小容器内边距 */
+    }
+    h1 {
+        font-size: 2em; /* 减小主标题字号 */
+    }
+    h2 {
+        font-size: 1.5em; /* 减小副标题字号 */
+    }
+    /* 输入框和按钮在小屏幕上占满宽度 */
+    .input-area input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+    }
+     .input-area input[type="number"] {
+        width: 100%;
+        margin-top: 10px;
+        margin-right: 0;
+    }
+    .input-area button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    /* 任务列表在小屏幕上垂直堆叠 */
+    .lists-area {
+        flex-direction: column;
+        gap: 15px; /* 减小列表间距 */
+    }
+    textarea {
+        width: 100%; /* 文本区域占满宽度 */
+    }
+    /* 历史搜索框也响应式调整一下 */
+    #historySearchInput {
+        width: 95%;
+    }
+}
+  /* **** 新增：公司 Logo 样式 **** */
+#companyLogo {
+    display: block; /* 让图片单独占一行 */
+    height: 50px;   /* 设置 logo 的高度，你可以根据需要调整这个数值 */
+    width: auto;    /* 宽度自动调整以保持比例 */
+    margin: 0 auto 20px auto; /* 上边距0，左右自动（实现水平居中），下边距20px（与标题的间距） */
+}
+

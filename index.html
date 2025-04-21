@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> <!-- 设置语言为中文 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的计划 To-Do List ✨</title>
+    <!-- 引入字体 (酷家乐快 & 霞鹜文楷屏幕版 - 可根据喜好选择或移除) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+    <!-- 引入样式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img id="companyLogo" src="logo.jpg" alt="耕未来公司Logo">
+        <h1>📝 我的计划 To-Do List ✨</h1>
+
+        <!-- 任务输入区域 -->
+        <div class="input-area">
+            <input type="text" id="taskInput" placeholder="输入新的学习任务...">
+            <input type="number" id="timeInput" placeholder="预估分钟 (可选)">
+            <button id="addTaskBtn">➕ 添加任务</button>
+        </div>
+
+        <!-- 专注计时器 -->
+        <div class="timer-area">
+            <h2>⏱️ 专注计时器 ⏱️</h2>
+            <div id="timerDisplay">00:00</div>
+            <button id="startPauseBtn">▶️ 开始</button>
+            <button id="resetBtn">🔄 重置</button>
+        </div>
+
+        <!-- 任务列表区域 -->
+        <div class="lists-area">
+            <div class="list-container">
+                <h2>🚀 今日挑战 (待完成)</h2>
+                <ul id="todoList" class="task-list">
+                    <!-- 待办任务将通过JS添加到这里 -->
+                </ul>
+            </div>
+            <div class="list-container">
+                <h2>🎉 太棒啦 (已完成)</h2>
+                <ul id="completedList" class="task-list">
+                    <!-- 已完成任务将通过JS移动到这里 -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- 学习困难点记录 -->
+        <div class="difficulty-area">
+            <h2>🤔 今天遇到的难题？</h2>
+            <textarea id="difficultPoints" placeholder="写下今天学习中不太懂的地方，比如：分数除法有点搞不懂，'的地得'的用法又忘了..."></textarea>
+            <button id="saveDaySummaryBtn">💾 保存今日总结</button>
+        </div>
+
+                  <!-- 历史记录区域 -->
+         <div class="history-area">
+            <h2>👣 我的成长足迹 👣</h2>
+            <!-- **** 新增搜索框 **** -->
+            <input type="search" id="historySearchInput" placeholder="搜索日期、任务或难题...">
+            <button id="viewHistoryBtn">🔄 显示全部/刷新</button> <!-- **** 修改按钮文字 **** -->
+            <div id="historyLog">
+                <!-- 历史记录将通过JS显示在这里 -->
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- 浮动消息提示 -->
+    <div id="feedbackMessage" class="feedback-message"></div>
+
+    <!-- 引入 Canvas Confetti 库 (用于庆祝动画) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <!-- 引入 JavaScript 文件 (defer确保HTML解析完毕后再执行) -->
+    <script src="script.js" defer></script>
+</body>
+</html>
